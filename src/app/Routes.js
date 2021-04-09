@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { EmployeesContainer } from '../components/Employees/EmployeesContainer';
-import { Worklog } from '../components/Worklog';
+import { WorklogContainer } from '../components/Worklog/WorklogContainer';
 import { Error404 } from '../components/Error404';
 
 export const PATH = {
@@ -18,7 +18,10 @@ export const Routes = () => {
         <Route path="/" exact render={() => <Redirect to={PATH.EMPLOYEES} />} />
 
         <Route path={PATH.EMPLOYEES} render={() => <EmployeesContainer />} />
-        <Route path={PATH.WORKLOG} render={() => <Worklog />} />
+        <Route
+          path={`${PATH.WORKLOG}/:id`}
+          render={() => <WorklogContainer />}
+        />
         <Route path={PATH.ERROR_404} render={() => <Error404 />} />
 
         <Redirect from="*" to={PATH.ERROR_404} />

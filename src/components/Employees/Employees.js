@@ -14,6 +14,8 @@ import {
 } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
+import { PATH } from '../../app/Routes';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -44,17 +46,20 @@ export const Employees = ({ employees, titles }) => {
               </TableHead>
               <TableBody>
                 {employees.map((e) => {
-                  const [[, key]] = e;
+                  const [[, id]] = e;
 
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={key}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={id}>
                       {e.map((item) => {
                         const [key, value] = item;
 
                         return (
                           <TableCell key={key}>
                             {key === 'lastName' ? (
-                              <Link component={RouterLink} to={'/'}>
+                              <Link
+                                component={RouterLink}
+                                to={`${PATH.WORKLOG}/${id}`}
+                              >
                                 {value}
                               </Link>
                             ) : (

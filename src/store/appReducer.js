@@ -26,7 +26,7 @@ export const appReducer = (state = initialState, action) => {
       return { ...state, employees: action.payload.employees };
 
     case SET_WORKLOG:
-      return { ...state };
+      return { ...state, worklog: action.payload.worklog };
 
     default:
       return state;
@@ -55,11 +55,20 @@ export const setEmployees = (employees) => ({
   },
 });
 
+export const setWorklog = (worklog) => ({
+  type: SET_WORKLOG,
+  payload: {
+    worklog,
+  },
+});
+
 /* Thunk */
 export const initializeAppAsync = () => async (dispatch) => {
   try {
+    // REQUEST auth me
     const employees = await getEmployees();
 
+    // REQUEST status
     if (employees) {
       dispatch(initializeApp(true));
     }
@@ -74,8 +83,26 @@ export const fetchEmployeesAsync = () => async (dispatch) => {
   try {
     const employees = await getEmployees();
 
+    // REQUEST status
     if (employees) {
       dispatch(setEmployees(employees));
+    }
+  } catch (error) {
+    console.log('Error', { ...error });
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
+
+export const fetchWorklogAsync = () => async (dispatch) => {
+  dispatch(setLoading(true));
+
+  try {
+    const worklog = await getWorklog();
+
+    // REQUEST status
+    if (worklog) {
+      dispatch(setWorklog(worklog));
     }
   } catch (error) {
     console.log('Error', { ...error });
