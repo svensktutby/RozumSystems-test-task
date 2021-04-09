@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginBottom: theme.spacing(4),
   },
+  violation: {
+    color: theme.palette.secondary.light,
+  },
 }));
 
 export const Worklog = ({ worklog, titles }) => {
@@ -46,14 +49,19 @@ export const Worklog = ({ worklog, titles }) => {
               </TableHead>
               <TableBody>
                 {worklog.map((log) => {
+                  const cellClassName = log.violation ? classes.violation : '';
+
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={log.id}>
                       {Object.entries(log).map((item) => {
                         const [key, value] = item;
 
                         return (
-                          key !== 'id' && (
-                            <TableCell key={key}>{value}</TableCell>
+                          key !== 'id' &&
+                          key !== 'violation' && (
+                            <TableCell className={cellClassName} key={key}>
+                              {value}
+                            </TableCell>
                           )
                         );
                       })}

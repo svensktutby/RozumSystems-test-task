@@ -19,11 +19,22 @@ export const WorklogContainer = () => {
     dispatch(fetchWorklogAsync());
   }, [dispatch]);
 
-  const filteredWorklog = worklog.reduce((acc, item) => {
-    if (item.employee_id === Number(id)) {
-      const { id, from, to } = item;
+  const worklogWithViolation = worklog.map((item) => {
+    const period = new Date(item.to).getTime() + 1000;
 
-      return [...acc, { id, from, to }];
+    const staff = worklog.filter(
+      ({ from, to }) =>
+        new Date(from).getTime() <= period && new Date(to).getTime() > period,
+    );
+
+    return { ...item, violation: staff.length < 3 };
+  });
+
+  const filteredWorklog = worklogWithViolation.reduce((acc, item) => {
+    if (item.employee_id === Number(id)) {
+      const { id, from, to, violation } = item;
+
+      return [...acc, { id, from, to, violation }];
     } else {
       return acc;
     }
