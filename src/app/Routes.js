@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Employees } from '../components/Employees';
+import { EmployeesContainer } from '../components/Employees/EmployeesContainer';
 import { Worklog } from '../components/Worklog';
 import { Error404 } from '../components/Error404';
 
@@ -17,7 +17,7 @@ export const Routes = () => {
       <Switch>
         <Route path="/" exact render={() => <Redirect to={PATH.EMPLOYEES} />} />
 
-        <Route path={PATH.EMPLOYEES} render={() => <Employees />} />
+        <Route path={PATH.EMPLOYEES} render={() => <EmployeesContainer />} />
         <Route path={PATH.WORKLOG} render={() => <Worklog />} />
         <Route path={PATH.ERROR_404} render={() => <Error404 />} />
 

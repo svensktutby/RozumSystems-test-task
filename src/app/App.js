@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
+import { store } from '../store';
 import { getEmployees, getWorklog } from '../api';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
@@ -20,11 +22,13 @@ export const App = () => {
 
   return (
     <div>
-      <Router>
-        <Header />
+      <Provider store={store}>
+        <Router>
+          <Header />
 
-        <Main />
-      </Router>
+          <Main />
+        </Router>
+      </Provider>
     </div>
   );
 };
