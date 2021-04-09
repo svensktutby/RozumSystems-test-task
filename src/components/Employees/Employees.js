@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper,
@@ -12,7 +13,6 @@ import {
   Container,
   Link,
 } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
 
 import { PATH } from '../../app/Routes';
 

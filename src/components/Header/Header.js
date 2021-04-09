@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   AppBar,
   IconButton,
@@ -8,11 +8,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Menu } from '@material-ui/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { setLoading } from '../../store/appReducer';
-
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -21,6 +19,9 @@ const useStyles = makeStyles(() => ({
   },
   appBar: {
     position: 'relative',
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
   },
   linearProgress: {
     position: 'absolute',
@@ -33,12 +34,7 @@ const useStyles = makeStyles(() => ({
 export const Header = () => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state.app.loading);
-
-  useEffect(() => {
-    dispatch(setLoading(false));
-  }, [dispatch, loading]);
 
   return (
     <header className={classes.root}>

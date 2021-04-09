@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -12,9 +13,6 @@ import {
   TableBody,
   Container,
 } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
-
-import { PATH } from '../../app/Routes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,15 +23,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginBottom: theme.spacing(4),
   },
-  headCell: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
 }));
 
 export const Worklog = ({ worklog, titles }) => {
   const classes = useStyles();
-  console.log(classes.head);
+  const history = useHistory();
 
   return (
     <section className={classes.root}>
@@ -74,10 +68,11 @@ export const Worklog = ({ worklog, titles }) => {
         <Button
           variant="contained"
           color="primary"
-          component={RouterLink}
-          to={PATH.EMPLOYEES}
+          onClick={() => {
+            history.goBack();
+          }}
         >
-          Return home
+          Return back
         </Button>
       </Container>
     </section>

@@ -20,6 +20,7 @@ export const Routes = () => {
         <Route path={PATH.EMPLOYEES} render={() => <EmployeesContainer />} />
         <Route
           path={`${PATH.WORKLOG}/:id`}
+          exact
           render={() => <WorklogContainer />}
         />
         <Route path={PATH.ERROR_404} render={() => <Error404 />} />

@@ -9,7 +9,7 @@ export const SET_WORKLOG = 'HD/APP/SET_WORKLOG';
 /* State */
 const initialState = {
   isInitialized: false,
-  loading: true,
+  loading: false,
   employees: [],
   worklog: [],
 };
