@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { store } from '../store';
-import { getEmployees, getWorklog } from '../api';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
+import { setLoading } from '../store/appReducer';
 
 export const App = () => {
-  const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState([]);
-  const [worklog, setWorklog] = useState([]);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.app.loading);
 
   useEffect(() => {
-    setLoading(false);
-  }, [setLoading]);
+    dispatch(setLoading(false));
+  }, [dispatch, loading]);
 
   if (loading) {
     return 'Loading...';
@@ -22,13 +20,11 @@ export const App = () => {
 
   return (
     <div>
-      <Provider store={store}>
-        <Router>
-          <Header />
+      <Router>
+        <Header />
 
-          <Main />
-        </Router>
-      </Provider>
+        <Main />
+      </Router>
     </div>
   );
 };

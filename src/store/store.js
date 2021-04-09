@@ -4,8 +4,6 @@ import thunk from 'redux-thunk';
 import { DEV } from '../config';
 import { appReducer as app } from './appReducer';
 
-console.log(DEV);
-
 const rootReducer = combineReducers({
   app,
 });
