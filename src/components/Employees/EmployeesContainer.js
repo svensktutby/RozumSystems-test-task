@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  formatBirthDay,
   sortArrayAlphabetically,
   transformObjectToArrayByKeys,
 } from '../../utils/utils';
@@ -29,7 +30,15 @@ export const EmployeesContainer = () => {
 
   const sortedEmployees = sortArrayAlphabetically(employees, 'lastName').map(
     (item) => {
-      return transformObjectToArrayByKeys(item, sortingTypes);
+      const itemWithFormattedBirthDay = {
+        ...item,
+        birthDate: formatBirthDay(item.birthDate),
+      };
+
+      return transformObjectToArrayByKeys(
+        itemWithFormattedBirthDay,
+        sortingTypes,
+      );
     },
   );
 
