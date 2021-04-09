@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getEmployees, getWorklog } from '../api';
+import { Header } from '../components/Header';
+import { Main } from '../components/Main';
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,9 @@ export const App = () => {
 
   return (
     <div>
-      <h1>Hospital department</h1>
+      <Header />
+
+      <Main />
     </div>
   );
 };
