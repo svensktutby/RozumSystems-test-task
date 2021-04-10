@@ -80,7 +80,7 @@ export const Worklog = ({ worklog, titles }) => {
             history.goBack();
           }}
         >
-          Return back
+          Назад
         </Button>
       </Container>
     </section>

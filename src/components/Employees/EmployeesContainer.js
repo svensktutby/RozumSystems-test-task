@@ -14,12 +14,12 @@ export const EmployeesContainer = () => {
   const dispatch = useDispatch();
 
   const titles = [
-    { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'lastName', label: 'Фамилия', minWidth: 100 },
-    { id: 'firstName', label: 'Имя', minWidth: 100 },
-    { id: 'middleName', label: 'Отчество', minWidth: 100 },
-    { id: 'birthDate', label: 'Дата рождения', minWidth: 100 },
-    { id: 'phone', label: 'Телефон', minWidth: 100 },
+    { id: 'id', label: 'ID', minWidth: 50 },
+    { id: 'lastName', label: 'Фамилия', minWidth: 150 },
+    { id: 'firstName', label: 'Имя', minWidth: 150 },
+    { id: 'middleName', label: 'Отчество', minWidth: 150 },
+    { id: 'birthDate', label: 'Дата рождения', minWidth: 120 },
+    { id: 'phone', label: 'Телефон', minWidth: 130 },
   ];
 
   useEffect(() => {
